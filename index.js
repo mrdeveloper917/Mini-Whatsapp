@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 //---------------------------------------- Index Route -------------------------------------------------------------------
-app.get("/chats", async (req, res) => {
+app.get("/", async (req, res) => {
   const chats = await Chat.find();
   // console.log(chats);
   res.render("index", { chats });
@@ -37,7 +37,7 @@ app.get("/chats/new", (req, res) => {
 });
 
 //--------------------------------------- Create Route --------------------------------------------------------------------
-app.post("/chats", (req, res) => {
+app.post("/", (req, res) => {
   let { from, to, msg } = req.body;
   let newChat = new Chat({
     from,
@@ -54,7 +54,7 @@ app.post("/chats", (req, res) => {
     .catch((err) => {
       console.log(err);
     });
-  res.redirect("/chats");
+  res.redirect("/");
 });
 
 //---------------------------------------- Edit Route -----------------------------------------------------------------------
@@ -74,7 +74,7 @@ app.put("/chats/:id", async (req, res) => {
     { runValidators: true, new: true }
   );
   console.log(updateChat);
-  res.redirect("/chats");
+  res.redirect("/");
 });
 
 
@@ -83,12 +83,12 @@ app.delete("/chats/:id",async(req , res) => {
   let { id } = req.params;
   let deletedChat = await Chat.findByIdAndDelete(id);
   console.log(deletedChat);
-  res.redirect("/chats")
+  res.redirect("/")
 });
 
-app.get("/", (req, res) => {
-  res.send("working root");
-});
+// app.get("/", (req, res) => {
+//   res.send("working root");
+// });
 
 app.listen(8080, () => {
   console.log("app is listening");
