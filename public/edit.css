@@ -1,0 +1,100 @@
+/* Reset & Font */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #ece9e6, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container */
+.edit-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+}
+
+/* Card */
+.edit-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.edit-card h2 {
+    margin-bottom: 15px;
+    color: #2f3640;
+}
+
+.edit-card p {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #718093;
+}
+
+.edit-card label {
+    display: block;
+    text-align: left;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #2f3640;
+}
+
+.edit-card textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #dcdde1;
+    font-size: 15px;
+    resize: none;
+    outline: none;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.edit-card textarea:focus {
+    border-color: #00a8ff;
+    box-shadow: 0 0 8px rgba(0, 168, 255, 0.3);
+}
+
+/* Buttons */
+.edit-card button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.edit-card button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+/* Back link */
+.back-btn {
+    display: inline-block;
+    margin-top: 15px;
+    color: #00a8ff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    text-decoration: underline;
+}

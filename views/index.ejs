@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Chats 💬</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header>
+    <h2>All Chats 💬</h2>
+  </header>
+
+  <div class="chat-container">
+    <% if (chats && chats.length > 0) { %> 
+      <% for (let chat of chats) { %>
+        <div class="chat <%= chat.from === 'You' ? 'right' : 'left' %>">
+          <div class="avatar"><%= chat.from[0].toUpperCase() %></div>
+          <div class="chat-content">
+            <div class="names">
+              <span class="from"><strong>From:</strong> <%= chat.from %></span>
+              <span class="to"><strong>To:</strong> <%= chat.to %></span>
+            </div>
+            <div class="msg"><%= chat.msg %></div>
+            <div class="actions">
+              <form action="/chats/<%= chat._id %>/edit" method="GET">
+                <button class="edit-btn">Edit</button>
+              </form>
+              <form action="/chats/<%= chat._id %>/?_method=DELETE" method="POST">
+                <button class="delete-btn">Delete</button>
+              </form>
+            </div>
+            <p class="time">
+              <%= new Date(chat.created_at).toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'}) %>
+            </p>
+          </div>
+        </div>
+      <% } %> 
+    <% } else { %>
+      <p class="no-chat">
+        No chats found yet. Click the button below to add a new chat!
+      </p>
+    <% } %>
+  </div>
+
+  <!-- Floating New Chat Button -->
+  <a href="/chats/new" class="new-chat-btn" title="Write New Chat">➕</a>
+
+  <script>
+    const container = document.querySelector(".chat-container");
+    if (container) container.scrollTop = container.scrollHeight;
+  </script>
+</body>
+</html>
