@@ -16,7 +16,7 @@ main()
   });
 
 async function main() {
-  await mongoose.connect("mongodb://localhost:27017/whatsapp");
+  await mongoose.connect("mongodb+srv://ayushthakur9823_db_user:ayush_baby@cluster0.j5xz6nb.mongodb.net/?appName=Cluster0/whatsapp");
 }
 
 app.set("views", path.join(__dirname, "views"));
@@ -24,29 +24,7 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        defaultSrc: ["'self'"],
-        scriptSrc: [
-          "'self'",
-          "'unsafe-inline'",
-          "https://cdn.jsdelivr.net",
-          "https://cdnjs.cloudflare.com",
-        ],
-        styleSrc: [
-          "'self'",
-          "'unsafe-inline'",
-          "https://cdn.jsdelivr.net",
-          "https://fonts.googleapis.com",
-        ],
-        fontSrc: ["'self'", "https://fonts.gstatic.com"],
-        imgSrc: ["'self'", "data:", "https://cdn.jsdelivr.net"],
-      },
-    },
-  })
-);
+
 
 //---------------------------------------- Index Route -------------------------------------------------------------------
 app.get("/chats", async (req, res) => {
