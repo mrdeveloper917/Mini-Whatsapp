@@ -77,7 +77,7 @@ app.put("/chats/:id", async (req, res) => {
     { runValidators: true, new: true }
   );
   console.log(updateChat);
-  res.redirect("/chats");
+  res.redirect("/");
 });
 
 //--------------------------------------- Delete Route ---------------------------------------------------------------------
@@ -85,7 +85,7 @@ app.delete("/chats/:id", async (req, res) => {
   let { id } = req.params;
   let deletedChat = await Chat.findByIdAndDelete(id);
   console.log(deletedChat);
-  res.redirect("/chats");
+  res.redirect("/");
 });
 
 // app.get("/", (req, res) => {
