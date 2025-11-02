@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 const Chat = require("./models/chat");
 const methodOverride = require("method-override");
 
+const helmet = require("helmet");
+
 main()
   .then(() => {
     console.log("connection successful");
@@ -22,6 +24,29 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "https://cdn.jsdelivr.net",
+          "https://cdnjs.cloudflare.com",
+        ],
+        styleSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "https://cdn.jsdelivr.net",
+          "https://fonts.googleapis.com",
+        ],
+        fontSrc: ["'self'", "https://fonts.gstatic.com"],
+        imgSrc: ["'self'", "data:", "https://cdn.jsdelivr.net"],
+      },
+    },
+  })
+);
 
 //---------------------------------------- Index Route -------------------------------------------------------------------
 app.get("/chats", async (req, res) => {
@@ -77,13 +102,12 @@ app.put("/chats/:id", async (req, res) => {
   res.redirect("/chats");
 });
 
-
 //--------------------------------------- Delete Route ---------------------------------------------------------------------
-app.delete("/chats/:id",async(req , res) => {
+app.delete("/chats/:id", async (req, res) => {
   let { id } = req.params;
   let deletedChat = await Chat.findByIdAndDelete(id);
   console.log(deletedChat);
-  res.redirect("/chats")
+  res.redirect("/chats");
 });
 
 // app.get("/", (req, res) => {
