@@ -27,7 +27,7 @@ app.use(methodOverride("_method"));
 
 
 //---------------------------------------- Index Route -------------------------------------------------------------------
-app.get("/chats", async (req, res) => {
+app.get("/", async (req, res) => {
   const chats = await Chat.find();
   // console.log(chats);
   res.render("index", { chats });
