@@ -57,7 +57,7 @@ app.post("/chats", (req, res) => {
     .catch((err) => {
       console.log(err);
     });
-  res.redirect("/chats");
+  res.redirect("/");
 });
 
 //---------------------------------------- Edit Route -----------------------------------------------------------------------
